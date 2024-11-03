@@ -1,14 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
-import { randomUUID } from 'crypto';
+import { IsEnum, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+
+enum SituacaoProduto {
+  ATIVO = 'ATIVO',
+  INATIVO = 'INATIVO',
+}
 
 export class CreateProdutDTO {
-  @IsString()
-  @IsNotEmpty()
-  @IsUUID()
-  @ApiProperty({ example: randomUUID() })
-  id_produto: string;
-
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ example: 'Produto Exemplo' })
@@ -36,10 +34,9 @@ export class CreateProdutDTO {
   @ApiProperty({ example: 1.5 })
   peso_bruto: number;
 
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty({ example: 'Ativo' })
-  situacao: string;
+  @IsEnum(SituacaoProduto)
+  @ApiProperty({ enum: SituacaoProduto, example: SituacaoProduto.ATIVO })
+  situacao: SituacaoProduto;
 
   @IsString()
   @IsNotEmpty()

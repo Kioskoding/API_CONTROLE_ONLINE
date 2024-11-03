@@ -12,6 +12,11 @@ enum Cargo {
   USER
 }
 
+enum SituacaoProduto {
+  ATIVO
+  INATIVO
+}
+
 model Usuario {
   id_usuario String @id @default(dbgenerated("gen_random_uuid()"))
   nome       String
@@ -51,18 +56,18 @@ enum TipoDocumento {
 }
 
 model Produto {
-  id_produto        String  @id @default(dbgenerated("gen_random_uuid()"))
+  id_produto        String          @id @default(dbgenerated("gen_random_uuid()"))
   nome              String
   descricao         String
   preco             Decimal
   categoria_produto String
   peso_liquido      Decimal
   peso_bruto        Decimal
-  situacao          String
+  situacao          SituacaoProduto
   unidade           String
   codigo            String
   estoque           Int
-  Pedido            Pedido? @relation(fields: [id_pedido], references: [id_pedido])
+  Pedido            Pedido?         @relation(fields: [id_pedido], references: [id_pedido])
   id_pedido         String?
 }
 

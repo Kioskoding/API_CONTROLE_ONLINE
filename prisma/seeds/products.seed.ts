@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, SituacaoProduto } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -45,7 +45,10 @@ async function seedProdutos() {
 
     for (const produto of produtos) {
       await prisma.produto.create({
-        data: produto,
+        data: {
+          ...produto,
+          situacao: produto.situacao as SituacaoProduto,
+        },
       });
     }
 

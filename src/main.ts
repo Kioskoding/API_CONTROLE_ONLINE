@@ -27,7 +27,7 @@ async function bootstrap() {
 
   app.use(
     cors({
-      origin: true,
+      origin: '*',
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
       credentials: true,
     }),
@@ -57,7 +57,7 @@ async function bootstrap() {
   const PORT = process.env.PORT || GLOBAL_CONFIG.nest.port;
   await app.listen(PORT, async () => {
     const myLogger = await app.resolve(MyLogger);
-    myLogger.log(`Server started listening: ${PORT}`);
+    myLogger.log(`Servidor iniciado na porta: ${PORT}`);
   });
 }
 bootstrap();

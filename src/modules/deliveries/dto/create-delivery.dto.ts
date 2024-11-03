@@ -1,7 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { SituacaoProduto } from '@prisma/client';
 import {
   IsBoolean,
   IsDateString,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -36,10 +38,14 @@ export class CreateDeliveryDTO {
   @ApiProperty({ example: 0 })
   quantidade?: number;
 
-  @IsString()
+  @IsEnum(SituacaoProduto)
   @IsOptional()
-  @ApiProperty({ example: 'pending' })
-  situacao?: string;
+  @ApiProperty({
+    enum: SituacaoProduto,
+    example: SituacaoProduto.ATIVO,
+    description: 'Situação do produto (ATIVO ou INATIVO)',
+  })
+  situacao?: SituacaoProduto;
 
   @IsNumber()
   @IsOptional()
