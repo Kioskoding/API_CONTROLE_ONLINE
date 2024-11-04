@@ -6,5 +6,11 @@
       "dest": "/src/main.ts",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
     }
+  ],
+  "builds": [
+    {
+      "src": "public/main.ts",
+      "use": "@vercel/node"
+    }
   ]
 }
