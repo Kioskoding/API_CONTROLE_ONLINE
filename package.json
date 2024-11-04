@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Nest TypeScript starter repository",
   "license": "MIT",
+  "main": "src/main.ts",
   "scripts": {
     "prebuild": "rimraf public",
     "build": "nest build && prisma generate",
