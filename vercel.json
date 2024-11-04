@@ -9,7 +9,7 @@
   ],
   "builds": [
     {
-      "src": "public/main.ts",
+      "src": "public/main.js",
       "use": "@vercel/node"
     }
   ]
